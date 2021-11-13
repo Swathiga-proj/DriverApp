@@ -1,0 +1,6 @@
+framework module Pods_SampleOla {
+  umbrella header "Pods-SampleOla-umbrella.h"
+
+  export *
+  module * { export * }
+}
