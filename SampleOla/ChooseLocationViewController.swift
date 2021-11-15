@@ -37,7 +37,7 @@ class ChooseLocationViewController: UIViewController,CLLocationManagerDelegate,G
         getAddress(lat: selectedLocation.lat!, lng: selectedLocation.long!)
     }
     @IBAction func selectLoc(_ sender: Any) {
-        let dic = ["address":labelAddress.text, "str":isFrom,"lat":selectedLocation.lat,"lng":selectedLocation.long] as [String:AnyObject]
+        let dic = ["address":labelAddress.text!, "str":isFrom,"lat":selectedLocation.lat!,"lng":selectedLocation.long] as [String:AnyObject]
         UserDefaults.standard.set(dic, forKey: "setLocation")
         NotificationCenter.default.post(name: NSNotification.Name("setLocation"), object: nil, userInfo: nil)
 

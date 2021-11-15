@@ -49,10 +49,15 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,UITextFiel
         textFieldSource.delegate = self
         textFieldDestination.delegate = self
 
-        NotificationCenter.default.addObserver(self, selector: #selector(self.selectedLoc), name: NSNotification.Name(rawValue: "setLocation"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.selectedLocOnMap), name: NSNotification.Name(rawValue: "setLocation"), object: nil)
 
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+    //    selectedLocOnMap()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        UserDefaults.standard.removeObject(forKey: "getLocation")
+    }
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         let vc = kstoryboard.instantiateViewController(withIdentifier: "SourceViewController") as! SourceViewController
 //        vc.modalPresentationStyle = .fullScreen
@@ -229,24 +234,54 @@ return false
         marker.map = mapView
         locationManager.stopUpdatingLocation()
     }
-    
+    func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
+        
+    }
+    func mapView(_ mapView: GMSMapView, didDrag marker: GMSMarker) {
+        
+    }
+    func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
+        
+        let pos = marker.position
+        if marker == sourceMarker{
+            sourceLocation.lat = pos.latitude
+            sourceLocation.long = pos.longitude
+        }else{
+            destinationLocation.lat = pos.latitude
+            destinationLocation.long = pos.longitude
+        }
+        updateLocation()
+
+    }
     func updateLocation(){
         mapView.clear()
         var arrLoc = [Location]()
        
         viewDurDis.isHidden = true
         if (sourceLocation.lat != nil && sourceLocation.long != nil) && (destinationLocation.lat != nil && destinationLocation.long != nil){
-            arrLoc.append(sourceLocation)
-            arrLoc.append(destinationLocation)
+//            arrLoc.append(sourceLocation)
+//            arrLoc.append(destinationLocation)
             var bounds = GMSCoordinateBounds()
 
-            for loc in arrLoc{
-                let marker = GMSMarker()
-                marker.position = CLLocationCoordinate2D(latitude: loc.lat!, longitude: loc.long!)
-                marker.map = mapView
-                bounds = bounds.includingCoordinate(marker.position)
+//            for loc in arrLoc{
+//                let marker = GMSMarker()
+//                marker.position = CLLocationCoordinate2D(latitude: loc.lat!, longitude: loc.long!)
+//                marker.map = mapView
+//                bounds = bounds.includingCoordinate(marker.position)
+//
+//            }
+            sourceMarker.position = CLLocationCoordinate2D(latitude: sourceLocation.lat!, longitude: sourceLocation.long!)
+            sourceMarker.isDraggable = true
+            sourceMarker.map = mapView
+            
+            bounds = bounds.includingCoordinate(sourceMarker.position)
+           
+            destinationMarker.position = CLLocationCoordinate2D(latitude: destinationLocation.lat!, longitude: destinationLocation.long!)
+            destinationMarker.isDraggable = true
+            destinationMarker.map = mapView
+            
+            bounds = bounds.includingCoordinate(destinationMarker.position)
 
-            }
             let update = GMSCameraUpdate.fit(bounds, withPadding: 150)
             mapView.animate(with: update)
             let source = CLLocationCoordinate2D(latitude: sourceLocation.lat!, longitude: sourceLocation.long!)
@@ -257,6 +292,7 @@ return false
         else if (sourceLocation.lat != nil && sourceLocation.long != nil) {
             var bounds = GMSCoordinateBounds()
             sourceMarker.position = CLLocationCoordinate2D(latitude: sourceLocation.lat as! Double, longitude: sourceLocation.long as! Double)
+            sourceMarker.isDraggable = false
             sourceMarker.map = mapView
             bounds = bounds.includingCoordinate(sourceMarker.position)
             let update = GMSCameraUpdate.fit(bounds, withPadding: 150)
@@ -267,6 +303,7 @@ return false
            
             var bounds = GMSCoordinateBounds()
             destinationMarker.position = CLLocationCoordinate2D(latitude: destinationLocation.lat as! Double, longitude: destinationLocation.long as! Double)
+            destinationMarker.isDraggable = false
             destinationMarker.map = mapView
             bounds = bounds.includingCoordinate(destinationMarker.position)
             let update = GMSCameraUpdate.fit(bounds, withPadding: 150)
@@ -361,8 +398,8 @@ return false
         
         
     }
-    @objc func selectedLoc() {
-        if let val = UserDefaults.standard.value(forKey: "getLocation") as? [String:AnyObject]{
+    @objc func selectedLocOnMap() {
+        if let val = UserDefaults.standard.value(forKey: "setLocation") as? [String:AnyObject]{
             
             if val.stringValueForKey("str") == "source"{
                 textFieldSource.text = val.stringValueForKey("address")
