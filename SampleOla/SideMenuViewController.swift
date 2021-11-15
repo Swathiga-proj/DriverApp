@@ -25,7 +25,7 @@ class SideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        arrList = [Menu(menu: "Map",icon: UIImage(named: "car")),Menu(menu: "List",icon: UIImage(named: "list")),Menu(menu: "Details",icon: UIImage(named: "detail"))]
+        arrList = [Menu(menu: "Map",icon: UIImage(named: "car")),Menu(menu: "List",icon: UIImage(named: "icons8-list-24")),Menu(menu: "Details",icon: UIImage(named: "icons8-detail-view-of-part-32"))]
     }
     
     
@@ -44,6 +44,7 @@ class SideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
         let dic = arrList[indexPath.row]
         label.text = dic.menu?.uppercased()
         image.image = dic.icon
+        image.tintColor = .white
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

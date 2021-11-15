@@ -78,11 +78,14 @@ class TripsViewController: UIViewController,UITableViewDataSource,UITableViewDel
         getList()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if total>arrList.count{
+            return arrList.count + 1
+        }
         return arrList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if indexPath.row<arrList.count{
+        if indexPath.row<arrList.count{
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             let labelRental = cell.viewWithTag(1) as! UILabel
 
@@ -110,8 +113,10 @@ class TripsViewController: UIViewController,UITableViewDataSource,UITableViewDel
             labelRental.text = dic.ride_type
             labelPrice.text = "₹" + dic.fare
             labelDotwithColor.layer.cornerRadius = labelDotwithColor.frame.height/2
+            labelDotwithColor.layer.masksToBounds = true
             labelDotWithBorder.layer.borderColor = UIColor.black.cgColor
             labelDotWithBorder.layer.borderWidth = 1
+            labelDotWithBorder.layer.masksToBounds = true
             labelSourceAddress.text = dic.s_address
             labelDestinationAddress.text = dic.d_address
             labelVehicleType.text = dic.vehicle_type_name
@@ -137,18 +142,18 @@ class TripsViewController: UIViewController,UITableViewDataSource,UITableViewDel
             }
         }
          return cell
-//        }else{
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "loadCell", for: indexPath)
-//
-//            return cell
-//
-//        }
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "loadCell", for: indexPath)
+          getList()
+            return cell
+
+        }
     }
 
     func getList(){
         
-        
-        ApiManager.shared.APICall(params: [:], url: kUrlListApi) { (dic, response, error) in
+        let dic = ["curentPage":arrList.count/10+1] as Dictionary<String, AnyObject>
+        ApiManager.shared.APICall(params: dic, url: kUrlListApi) { (dic, response, error) in
             DispatchQueue.main.async {
                 self.refreshControl.endRefreshing()
             }

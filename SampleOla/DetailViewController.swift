@@ -26,11 +26,11 @@ class DetailViewController: UIViewController,CLLocationManagerDelegate {
         menuButton.target(forAction: #selector(target?.revealSideMenu), withSender: nil)
         buttonReceipt.layer.cornerRadius = buttonReceipt.frame.height/2
         labelColorDot.layer.cornerRadius = labelColorDot.frame.height/2
-        
-        labelBorderDot.layer.cornerRadius = labelBorderDot.frame.height/2
+        labelColorDot.layer.masksToBounds = true
         
         labelBorderDot.layer.borderWidth = 1
         labelBorderDot.layer.borderColor = UIColor.black.cgColor
+        labelBorderDot.layer.masksToBounds = true
     }
     
 

@@ -14,7 +14,6 @@
 		CD4FD744273F8F1200685A39 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FD743273F8F1200685A39 /* ApiManager.swift */; };
 		CD4FD752273F9B7F00685A39 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FD751273F9B7F00685A39 /* DetailViewController.swift */; };
 		CD4FD75A273FA09900685A39 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FD759273FA09900685A39 /* DictionaryExtensions.swift */; };
-		CD514003273E6AC700226191 /* UIView+UpdateAutoLayoutConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = CD514001273E6AC700226191 /* UIView+UpdateAutoLayoutConstraints.m */; };
 		CD631498273CDC80002D0DAA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD631497273CDC80002D0DAA /* HomeViewController.swift */; };
 		CD63149F273CDD36002D0DAA /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD63149E273CDD36002D0DAA /* SideMenuViewController.swift */; };
 		CD6314A2273CDD45002D0DAA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6314A1273CDD45002D0DAA /* MainViewController.swift */; };
@@ -37,9 +36,6 @@
 		CD4FD743273F8F1200685A39 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		CD4FD751273F9B7F00685A39 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		CD4FD759273FA09900685A39 /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
-		CD514000273E6AC600226191 /* SampleOla-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SampleOla-Bridging-Header.h"; sourceTree = "<group>"; };
-		CD514001273E6AC700226191 /* UIView+UpdateAutoLayoutConstraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+UpdateAutoLayoutConstraints.m"; sourceTree = "<group>"; };
-		CD514002273E6AC700226191 /* UIView+UpdateAutoLayoutConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+UpdateAutoLayoutConstraints.h"; sourceTree = "<group>"; };
 		CD631497273CDC80002D0DAA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CD63149E273CDD36002D0DAA /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		CD6314A1273CDD45002D0DAA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +79,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CD52253E27422FB5009B0B8E /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				CD4FD73D273F81EC00685A39 /* Singleton.swift */,
+				CD4FD743273F8F1200685A39 /* ApiManager.swift */,
+				CD736CAD273BF0120023921E /* Constants.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		CD52253F27422FE0009B0B8E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CD4FD759273FA09900685A39 /* DictionaryExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		CD63149D273CDD1C002D0DAA /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,23 +129,18 @@
 			children = (
 				CD736C8A273BEDF30023921E /* AppDelegate.swift */,
 				CD63149D273CDD1C002D0DAA /* SideMenu */,
-				CD736C8E273BEDF30023921E /* ViewController.swift */,
 				CD631497273CDC80002D0DAA /* HomeViewController.swift */,
 				CD4FD751273F9B7F00685A39 /* DetailViewController.swift */,
 				CD6314D0273D479E002D0DAA /* SourceViewController.swift */,
 				CD4FD736273F7EC800685A39 /* ChooseLocationViewController.swift */,
 				CD4FD740273F8EEA00685A39 /* TripsViewController.swift */,
-				CD4FD73D273F81EC00685A39 /* Singleton.swift */,
-				CD4FD743273F8F1200685A39 /* ApiManager.swift */,
 				CD736C90273BEDF30023921E /* Main.storyboard */,
 				CD736C93273BEDF50023921E /* Assets.xcassets */,
-				CD4FD759273FA09900685A39 /* DictionaryExtensions.swift */,
 				CD736C95273BEDF50023921E /* LaunchScreen.storyboard */,
 				CD736C98273BEDF50023921E /* Info.plist */,
-				CD736CAD273BF0120023921E /* Constants.swift */,
-				CD514002273E6AC700226191 /* UIView+UpdateAutoLayoutConstraints.h */,
-				CD514001273E6AC700226191 /* UIView+UpdateAutoLayoutConstraints.m */,
-				CD514000273E6AC600226191 /* SampleOla-Bridging-Header.h */,
+				CD52253E27422FB5009B0B8E /* Helper */,
+				CD736C8E273BEDF30023921E /* ViewController.swift */,
+				CD52253F27422FE0009B0B8E /* Extensions */,
 			);
 			path = SampleOla;
 			sourceTree = "<group>";
@@ -262,7 +271,6 @@
 				CD4FD737273F7EC800685A39 /* ChooseLocationViewController.swift in Sources */,
 				CD63149F273CDD36002D0DAA /* SideMenuViewController.swift in Sources */,
 				CD4FD744273F8F1200685A39 /* ApiManager.swift in Sources */,
-				CD514003273E6AC700226191 /* UIView+UpdateAutoLayoutConstraints.m in Sources */,
 				CD631498273CDC80002D0DAA /* HomeViewController.swift in Sources */,
 				CD4FD752273F9B7F00685A39 /* DetailViewController.swift in Sources */,
 			);
@@ -424,7 +432,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nanonino.SampleOla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "SampleOla/SampleOla-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -449,7 +457,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nanonino.SampleOla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "SampleOla/SampleOla-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
